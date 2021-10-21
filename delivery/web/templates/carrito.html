@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- cart area start -->
+    <div class="cart-area pd-top-120 pd-bottom-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="table-responsive mb-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="blank"></th>
+                                    <th class="blank"></th>
+                                    <th class="blank"></th>
+                                    <th class="title-name">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th>Total Price</th>
+                                    <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for key,value in request.session.cart.items %}
+                                <tr>
+                                    <td class="table-close-btn"><a href="#"><i class="ri-close-line"></i></a></td>
+                                    <th scope="row"><img width="250" height="200" src="{{ value.imagen }}" alt="img"></th>
+                                    <td colspan="2" class="item-name">
+                                        <a href="{% url 'web:detalle' value.producto_id %}" class="d-block text-dark">{{ value.nombre }}</a>
+                                    </td>
+                                    <td>{{ value.precio }}</td>
+                                    <td class="table-quantity">
+                                        {{ value.cantidad }}
+                                    </td>
+                                    <td>{{ value.total }}</td>
+                                    <td class="text-center align-middle px-0"><a href="{% url 'web:eliminarProductoCarrito' value.producto_id %}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>                    
+                </div>
+            </div>
+            <div class="float-right">
+                <a class="btn btn-secondary" href="{% url 'web:index' %}" role="button">REGRESAR</a>
+              </div>
+        </div>
+    </div>
+    <!-- cart area end -->
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="category-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 align-self-center">
+                <ul class="category-menu">
+                    {% for category in category_list %}
+                    <li class="category-wrap"><a href="/categoria/{{category.id}}/"><img src="" alt="">{{category.nombre}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="shop-details-area pd-top-100 pd-bottom-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="sticy-product">
+                    <div style="text-align: center;" class="product-thumbnail-wrapper">
+                        <img style="width: 60%;" src="{{ producto.imagen.url }}" alt="img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="shop-item-details">                    
+                    <h2 class="entry-title">{{ producto.nombre }}</h2>
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center">
+                            <h4 class="price">S/. {{ producto.precio }}</h4>
+                        </div>                            
+                    </div>   
+                    <p class="mt-4">{{ producto.detalle }}</p>    
+                    <a href="{% url 'web:agregarCarrito' producto.id %}" class="btn btn-secondary">AGREGAR AL CARRITO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
